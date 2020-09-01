@@ -20,7 +20,7 @@
   "author": "Christian Bundy <christianbundy@fraction.io>",
   "main": "index.js",
   "bin": {
-    "trebot": "index.js",
+    "trebot": "index.js"
   },
   "scripts": {
     "fix": "common-good fix",
