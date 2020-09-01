@@ -161,7 +161,7 @@ module.exports = function (ssbClient) {
               "camel-case-expansion": false,
             })
 
-            .scriptName("ssb")
+            .scriptName("trebot")
             .command(
               "*",
               "Friendly command-line interface for Secure Scuttlebutt",

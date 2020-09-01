@@ -20,8 +20,7 @@
   "author": "Christian Bundy <christianbundy@fraction.io>",
   "main": "index.js",
   "bin": {
-    "ssb": "index.js",
-    "ssb-cli": "index.js"
+    "trebot": "index.js",
   },
   "scripts": {
     "fix": "common-good fix",
