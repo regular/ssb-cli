@@ -1,3 +1,7 @@
+> This fork uses ssb-zero-conf-client and is specific to tre/Bay of Plenty in that it looks for a .trerc file in cwd or above to get `caps.shs`. It reads `.tre/secret` and waits for an ssb-server on the local network (with matching caps.shs) to broadcast it's address (happens every second).
+
+The following is Christian's original README.md
+
 # SSB-CLI
 
 **Friendly command-line interface for Secure Scuttlebutt.**

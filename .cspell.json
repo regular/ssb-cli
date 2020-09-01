@@ -10,6 +10,9 @@
     "multiserver",
     "promisify",
     "sbot",
-    "whoami"
+    "whoami",
+    "trerc",
+    "datapath",
+    "esversion"
   ]
 }

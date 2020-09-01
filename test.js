@@ -4,49 +4,49 @@ const replaceDotCommands = require("./lib/replace-dot-commands");
 const getUsage = require("./lib/get-usage");
 
 const f = () => {};
-test("basic sanity tests", async t => {
+test("basic sanity tests", async (t) => {
   const api = {
-    help: cb =>
+    help: (cb) =>
       cb(null, {
         description: "some fake API",
         commands: {
           a: {
             type: "string",
             description: "a",
-            optional: true
+            optional: true,
           },
           b: {
             type: "someNumber",
             description: "b",
-            optional: false
+            optional: false,
           },
           c: {
-            description: "c"
-          }
-        }
+            description: "c",
+          },
+        },
       }),
     a: f,
     b: f,
     c: {
-      help: cb =>
+      help: (cb) =>
         cb(null, {
           description: "deep fake API",
           commands: {
             a: {
               type: "messageId",
-              description: "A"
+              description: "A",
             },
             b: {
               type: "boolean",
               description: "B",
               optional: true,
-              default: true
+              default: true,
             },
             c: {
               description: "C",
-              optional: false
-            }
-          }
+              optional: false,
+            },
+          },
         }),
       a: f,
       b: f,
@@ -56,19 +56,19 @@ test("basic sanity tests", async t => {
         b: f,
         c: {
           // Single-method group
-          a: f
-        }
-      }
+          a: f,
+        },
+      },
     },
     // Method only exists in API
     d: f,
     // Group only exists in API
     e: {
       a: f,
-      b: f
+      b: f,
     },
     // Empty group
-    f: {}
+    f: {},
   };
 
   const manifest = {
@@ -82,16 +82,16 @@ test("basic sanity tests", async t => {
         a: "sync",
         b: "async",
         c: {
-          a: "source"
+          a: "source",
         },
         // Method only exists in manifest
         d: "source",
         // Group only exists in manifest
         e: {
-          a: f
-        }
-      }
-    }
+          a: f,
+        },
+      },
+    },
   };
 
   const expected = {
@@ -103,10 +103,10 @@ test("basic sanity tests", async t => {
         a: "sync",
         b: "async",
         c: {
-          a: "source"
-        }
-      }
-    }
+          a: "source",
+        },
+      },
+    },
   };
 
   const actual = pruneManifest(manifest, api);
@@ -119,37 +119,37 @@ test("basic sanity tests", async t => {
         a: {
           type: "string",
           description: "a",
-          optional: true
+          optional: true,
         },
         b: {
           type: "someNumber",
           description: "b",
-          optional: false
+          optional: false,
         },
         c: {
-          description: "c"
-        }
-      }
+          description: "c",
+        },
+      },
     },
     c: {
       description: "deep fake API",
       commands: {
         a: {
           type: "messageId",
-          description: "A"
+          description: "A",
         },
         b: {
           type: "boolean",
           description: "B",
           optional: true,
-          default: true
+          default: true,
         },
         c: {
           description: "C",
-          optional: false
-        }
-      }
-    }
+          optional: false,
+        },
+      },
+    },
   };
 
   const usage = await getUsage(api);
@@ -159,7 +159,7 @@ test("basic sanity tests", async t => {
   t.end();
 });
 
-test("support dot commands", t => {
+test("support dot commands", (t) => {
   const input = ["/usr/bin/node", "/usr/bin/ssb-cli", "gossip.peers"];
 
   const expected = ["/usr/bin/node", "/usr/bin/ssb-cli", "gossip", "peers"];
@@ -170,7 +170,7 @@ test("support dot commands", t => {
   t.end();
 });
 
-test("don't replace non-dot commands", t => {
+test("don't replace non-dot commands", (t) => {
   const input = ["/usr/bin/node", "/usr/bin/ssb-cli", "gossip", "peers"];
 
   const output = replaceDotCommands(input);
